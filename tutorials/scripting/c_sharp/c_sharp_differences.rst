@@ -51,6 +51,10 @@ contain other useful mathematical operations.
 .. _System.Math: https://learn.microsoft.com/en-us/dotnet/api/system.math
 .. _System.MathF: https://learn.microsoft.com/en-us/dotnet/api/system.mathf
 
+In .NET 7, with the introduction of `generic math <https://learn.microsoft.com/en-us/dotnet/standard/generics/math>`_,
+the numeric types such as ``int`` or ``float`` provide many math methods as
+instance or static methods.
+
 Random functions
 ^^^^^^^^^^^^^^^^
 
