@@ -307,7 +307,9 @@ For mobile platforms, see :ref:`quit_on_go_back<class_SceneTree_property_quit_on
 - void **set_current_scene** **(** :ref:`Node<class_Node>` value **)**
 - :ref:`Node<class_Node>` **get_current_scene** **(** **)**
 
-The current scene.
+Returns the root node of the currently running scene, regardless of its structure.
+
+\ **Warning:** Setting this directly might not work as expected, and will *not* add or remove any nodes from the tree, consider using :ref:`change_scene_to_file<class_SceneTree_method_change_scene_to_file>` or :ref:`change_scene_to_packed<class_SceneTree_method_change_scene_to_packed>` instead.
 
 .. rst-class:: classref-item-separator
 
@@ -670,6 +672,8 @@ Returns an array of currently existing :ref:`Tween<class_Tween>`\ s in the **Sce
 :ref:`bool<class_bool>` **has_group** **(** :ref:`StringName<class_StringName>` name **)** |const|
 
 Returns ``true`` if the given group exists.
+
+A group exists if any :ref:`Node<class_Node>` in the tree belongs to it (see :ref:`Node.add_to_group<class_Node_method_add_to_group>`). Groups without nodes are removed automatically.
 
 .. rst-class:: classref-item-separator
 
