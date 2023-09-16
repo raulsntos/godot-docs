@@ -116,6 +116,7 @@ Nodes
     class_gpuparticlescollisionsdf3d
     class_gpuparticlescollisionsphere3d
     class_graphedit
+    class_graphelement
     class_graphnode
     class_gridcontainer
     class_gridmap
@@ -780,6 +781,7 @@ Other objects
     class_oggpacketsequenceplayback
     class_openxrapiextension
     class_openxrextensionwrapperextension
+    class_openxrinteractionprofilemetadata
     class_openxrinterface
     class_os
     class_packeddatacontainerref

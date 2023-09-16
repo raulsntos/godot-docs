@@ -21,7 +21,21 @@ Description
 
 **EditorInterface** gives you control over Godot editor's window. It allows customizing the window, saving and (re-)loading scenes, rendering mesh previews, inspecting and editing resources and objects, and provides access to :ref:`EditorSettings<class_EditorSettings>`, :ref:`EditorFileSystem<class_EditorFileSystem>`, :ref:`EditorResourcePreview<class_EditorResourcePreview>`, :ref:`ScriptEditor<class_ScriptEditor>`, the editor viewport, and information about scenes.
 
-\ **Note:** This class shouldn't be instantiated directly. Instead, access the singleton using :ref:`EditorPlugin.get_editor_interface<class_EditorPlugin_method_get_editor_interface>`.
+\ **Note:** This class shouldn't be instantiated directly. Instead, access the singleton directly by its name.
+
+
+.. tabs::
+
+ .. code-tab:: gdscript
+
+    var editor_settings = EditorInterface.get_editor_settings()
+
+ .. code-tab:: csharp
+
+    // In C# you can access it via the static Singleton property.
+    EditorSettings settings = EditorInterface.Singleton.GetEditorSettings();
+
+
 
 .. rst-class:: classref-reftable-group
 
@@ -71,6 +85,8 @@ Methods
    | :ref:`float<class_float>`                                 | :ref:`get_editor_scale<class_EditorInterface_method_get_editor_scale>` **(** **)** |const|                                                                                                                                                             |
    +-----------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`EditorSettings<class_EditorSettings>`               | :ref:`get_editor_settings<class_EditorInterface_method_get_editor_settings>` **(** **)** |const|                                                                                                                                                       |
+   +-----------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`Theme<class_Theme>`                                 | :ref:`get_editor_theme<class_EditorInterface_method_get_editor_theme>` **(** **)** |const|                                                                                                                                                             |
    +-----------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`FileSystemDock<class_FileSystemDock>`               | :ref:`get_file_system_dock<class_EditorInterface_method_get_file_system_dock>` **(** **)** |const|                                                                                                                                                     |
    +-----------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -348,6 +364,20 @@ Returns the actual scale of the editor UI (``1.0`` being 100% scale). This can b
 :ref:`EditorSettings<class_EditorSettings>` **get_editor_settings** **(** **)** |const|
 
 Returns the editor's :ref:`EditorSettings<class_EditorSettings>` instance.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_EditorInterface_method_get_editor_theme:
+
+.. rst-class:: classref-method
+
+:ref:`Theme<class_Theme>` **get_editor_theme** **(** **)** |const|
+
+Returns the editor's :ref:`Theme<class_Theme>`.
+
+\ **Note:** When creating custom editor UI, prefer accessing theme items directly from your GUI nodes using the ``get_theme_*`` methods.
 
 .. rst-class:: classref-item-separator
 
