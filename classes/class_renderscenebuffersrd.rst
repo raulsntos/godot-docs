@@ -21,7 +21,7 @@ Description
 
 This object manages all 3D rendering buffers for the rendering device based renderers. An instance of this object is created for every viewport that has 3D rendering enabled.
 
-All buffers are organised in **contexts**. The default context is called **render_buffers** and can contain amongst others the color buffer, depth buffer, velocity buffers, VRS density map and MSAA variants of these buffers.
+All buffers are organized in **contexts**. The default context is called **render_buffers** and can contain amongst others the color buffer, depth buffer, velocity buffers, VRS density map and MSAA variants of these buffers.
 
 Buffers are only guaranteed to exist during rendering of the viewport.
 
@@ -63,6 +63,8 @@ Methods
    | :ref:`RID<class_RID>`                         | :ref:`get_texture_slice<class_RenderSceneBuffersRD_method_get_texture_slice>` **(** :ref:`StringName<class_StringName>` context, :ref:`StringName<class_StringName>` name, :ref:`int<class_int>` layer, :ref:`int<class_int>` mipmap, :ref:`int<class_int>` layers, :ref:`int<class_int>` mipmaps **)**                                                                                                                                                                                    |
    +-----------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Vector2i<class_Vector2i>`               | :ref:`get_texture_slice_size<class_RenderSceneBuffersRD_method_get_texture_slice_size>` **(** :ref:`StringName<class_StringName>` context, :ref:`StringName<class_StringName>` name, :ref:`int<class_int>` mipmap **)**                                                                                                                                                                                                                                                                    |
+   +-----------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`RID<class_RID>`                         | :ref:`get_texture_slice_view<class_RenderSceneBuffersRD_method_get_texture_slice_view>` **(** :ref:`StringName<class_StringName>` context, :ref:`StringName<class_StringName>` name, :ref:`int<class_int>` layer, :ref:`int<class_int>` mipmap, :ref:`int<class_int>` layers, :ref:`int<class_int>` mipmaps, :ref:`RDTextureView<class_RDTextureView>` view **)**                                                                                                                          |
    +-----------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`                       | :ref:`get_use_taa<class_RenderSceneBuffersRD_method_get_use_taa>` **(** **)** |const|                                                                                                                                                                                                                                                                                                                                                                                                      |
    +-----------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -252,13 +254,25 @@ Returns the texture size of a given slice of a cached texture.
 
 ----
 
+.. _class_RenderSceneBuffersRD_method_get_texture_slice_view:
+
+.. rst-class:: classref-method
+
+:ref:`RID<class_RID>` **get_texture_slice_view** **(** :ref:`StringName<class_StringName>` context, :ref:`StringName<class_StringName>` name, :ref:`int<class_int>` layer, :ref:`int<class_int>` mipmap, :ref:`int<class_int>` layers, :ref:`int<class_int>` mipmaps, :ref:`RDTextureView<class_RDTextureView>` view **)**
+
+Returns a specific view of a slice (layer or mipmap) for a cached texture.
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _class_RenderSceneBuffersRD_method_get_use_taa:
 
 .. rst-class:: classref-method
 
 :ref:`bool<class_bool>` **get_use_taa** **(** **)** |const|
 
-Returns **true** if TAA is enabled.
+Returns ``true`` if TAA is enabled.
 
 .. rst-class:: classref-item-separator
 
@@ -306,7 +320,7 @@ Returns the view count for the associated viewport.
 
 :ref:`bool<class_bool>` **has_texture** **(** :ref:`StringName<class_StringName>` context, :ref:`StringName<class_StringName>` name **)** |const|
 
-Returns **true** if a cached texture exists for this name.
+Returns ``true`` if a cached texture exists for this name.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
