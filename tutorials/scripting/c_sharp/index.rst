@@ -15,6 +15,7 @@ of the editor from the Godot website.
 
    c_sharp_basics
    c_sharp_features
+   c_sharp_external_editor
    c_sharp_style_guide
    diagnostics/index
 
