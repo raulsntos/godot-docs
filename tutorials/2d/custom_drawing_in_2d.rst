@@ -347,7 +347,7 @@ the same as before, except that we draw a polygon instead of lines:
         int nbPoints = 32;
         var pointsArc = new Vector2[nbPoints + 2];
         pointsArc[0] = center;
-        var colors = new Color[] { color };
+        Color[] colors = [color];
 
         for (int i = 0; i <= nbPoints; i++)
         {
