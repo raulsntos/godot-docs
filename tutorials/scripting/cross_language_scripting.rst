@@ -186,9 +186,9 @@ to said method.
 
     myGDScriptNode.Call("print_n_times", "Hello there!", 2); // Hello there! Hello there!
 
-    string[] arr = new string[] { "a", "b", "c" };
+    string[] arr = ["a", "b", "c"];
     myGDScriptNode.Call("print_array", arr); // a, b, c
-    myGDScriptNode.Call("print_array", new int[] { 1, 2, 3 }); // 1, 2, 3
+    myGDScriptNode.Call("print_array", [1, 2, 3]); // 1, 2, 3
     // Note how the type of each array entry does not matter as long as it can be handled by the marshaller.
 
 .. warning::
