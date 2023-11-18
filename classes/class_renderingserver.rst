@@ -1612,7 +1612,7 @@ Flag used to mark that the mesh does not have a vertex array and instead will in
 
 :ref:`ArrayFormat<enum_RenderingServer_ArrayFormat>` **ARRAY_FLAG_COMPRESS_ATTRIBUTES** = ``536870912``
 
-Flag used to mark that a mesh is using compressed attributes (vertices, normals, tangents, uvs). When this form of compression is enabled, vertex positions will be packed into into an RGBA16UNORM attribute and scaled in the vertex shader. The normal and tangent will be packed into a RG16UNORM representing an axis, and an 16 bit float stored in the A-channel of the vertex. UVs will use 16-bit normalized floats instead of full 32 bit signed floats. When using this compression mode you must either use vertices, normals, and tangents or only vertices. You cannot use normals without tangents. Importers will automatically enable this compression if they can.
+Flag used to mark that a mesh is using compressed attributes (vertices, normals, tangents, UVs). When this form of compression is enabled, vertex positions will be packed into an RGBA16UNORM attribute and scaled in the vertex shader. The normal and tangent will be packed into an RG16UNORM representing an axis, and a 16-bit float stored in the A-channel of the vertex. UVs will use 16-bit normalized floats instead of full 32-bit signed floats. When using this compression mode you must use either vertices, normals, and tangents or only vertices. You cannot use normals without tangents. Importers will automatically enable this compression if they can.
 
 .. _class_RenderingServer_constant_ARRAY_FLAG_FORMAT_VERSION_BASE:
 
@@ -2532,7 +2532,7 @@ Draw particles in the order that they appear in the particles array.
 
 :ref:`ParticlesDrawOrder<enum_RenderingServer_ParticlesDrawOrder>` **PARTICLES_DRAW_ORDER_LIFETIME** = ``1``
 
-Sort particles based on their lifetime.
+Sort particles based on their lifetime. In other words, the particle with the highest lifetime is drawn at the front.
 
 .. _class_RenderingServer_constant_PARTICLES_DRAW_ORDER_REVERSE_LIFETIME:
 
@@ -2540,7 +2540,7 @@ Sort particles based on their lifetime.
 
 :ref:`ParticlesDrawOrder<enum_RenderingServer_ParticlesDrawOrder>` **PARTICLES_DRAW_ORDER_REVERSE_LIFETIME** = ``2``
 
-
+Sort particles based on the inverse of their lifetime. In other words, the particle with the lowest lifetime is drawn at the front.
 
 .. _class_RenderingServer_constant_PARTICLES_DRAW_ORDER_VIEW_DEPTH:
 
