@@ -16,6 +16,13 @@ Exporter for Windows.
 
 .. rst-class:: classref-introduction-group
 
+Description
+-----------
+
+The Windows exporter customizes how a Windows build is handled. In the editor's "Export" window, it is created when adding a new "Windows" preset.
+
+.. rst-class:: classref-introduction-group
+
 Tutorials
 ---------
 
@@ -318,6 +325,8 @@ If ``true``, project resources are embedded into the executable.
 
 Array of the additional command line arguments passed to the code signing tool. See `Sign Tool <https://learn.microsoft.com/en-us/dotnet/framework/tools/signtool-exe>`__.
 
+**Note:** The returned array is *copied* and any changes to it will not update the original property value. See :ref:`PackedStringArray<class_PackedStringArray>` for more details.
+
 .. rst-class:: classref-item-separator
 
 ----
@@ -591,3 +600,4 @@ If ``true``, project textures are exported in the S3TC/BPTC format.
 .. |static| replace:: :abbr:`static (This method doesn't need an instance to be called, so it can be called directly using the class name.)`
 .. |operator| replace:: :abbr:`operator (This method describes a valid operator to use with this type as left-hand operand.)`
 .. |bitfield| replace:: :abbr:`BitField (This value is an integer composed as a bitmask of the following flags.)`
+.. |void| replace:: :abbr:`void (No return value.)`
