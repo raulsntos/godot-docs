@@ -578,6 +578,7 @@ Resources
     class_visualshadernodecolorfunc
     class_visualshadernodecolorop
     class_visualshadernodecolorparameter
+    class_visualshadernodecomment
     class_visualshadernodecompare
     class_visualshadernodeconstant
     class_visualshadernodecubemap
@@ -952,6 +953,7 @@ Other objects
     class_workerthreadpool
     class_xmlparser
     class_xrbodytracker
+    class_xrcontrollertracker
     class_xrfacetracker
     class_xrhandtracker
     class_xrinterface
@@ -959,6 +961,7 @@ Other objects
     class_xrpose
     class_xrpositionaltracker
     class_xrserver
+    class_xrtracker
     class_zippacker
     class_zipreader
 

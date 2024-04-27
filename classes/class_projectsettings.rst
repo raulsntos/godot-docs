@@ -187,6 +187,8 @@ Properties
    +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`                           | :ref:`debug/gdscript/warnings/enable<class_ProjectSettings_property_debug/gdscript/warnings/enable>`                                                                                                       | ``true``                                                                                         |
    +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
+   | :ref:`int<class_int>`                             | :ref:`debug/gdscript/warnings/enum_variable_without_default<class_ProjectSettings_property_debug/gdscript/warnings/enum_variable_without_default>`                                                         | ``1``                                                                                            |
+   +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`                           | :ref:`debug/gdscript/warnings/exclude_addons<class_ProjectSettings_property_debug/gdscript/warnings/exclude_addons>`                                                                                       | ``true``                                                                                         |
    +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`int<class_int>`                             | :ref:`debug/gdscript/warnings/function_used_as_property<class_ProjectSettings_property_debug/gdscript/warnings/function_used_as_property>`                                                                 | ``1``                                                                                            |
@@ -284,6 +286,8 @@ Properties
    | :ref:`bool<class_bool>`                           | :ref:`debug/shader_language/warnings/float_comparison<class_ProjectSettings_property_debug/shader_language/warnings/float_comparison>`                                                                     | ``true``                                                                                         |
    +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`                           | :ref:`debug/shader_language/warnings/formatting_error<class_ProjectSettings_property_debug/shader_language/warnings/formatting_error>`                                                                     | ``true``                                                                                         |
+   +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
+   | :ref:`bool<class_bool>`                           | :ref:`debug/shader_language/warnings/magic_position_write<class_ProjectSettings_property_debug/shader_language/warnings/magic_position_write>`                                                             | ``true``                                                                                         |
    +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`                           | :ref:`debug/shader_language/warnings/treat_warnings_as_errors<class_ProjectSettings_property_debug/shader_language/warnings/treat_warnings_as_errors>`                                                     | ``false``                                                                                        |
    +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
@@ -387,7 +391,7 @@ Properties
    +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`                           | :ref:`display/window/energy_saving/keep_screen_on<class_ProjectSettings_property_display/window/energy_saving/keep_screen_on>`                                                                             | ``true``                                                                                         |
    +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
-   | :ref:`bool<class_bool>`                           | :ref:`display/window/energy_saving/keep_screen_on.editor<class_ProjectSettings_property_display/window/energy_saving/keep_screen_on.editor>`                                                               | ``false``                                                                                        |
+   | :ref:`bool<class_bool>`                           | :ref:`display/window/energy_saving/keep_screen_on.editor_hint<class_ProjectSettings_property_display/window/energy_saving/keep_screen_on.editor_hint>`                                                     | ``false``                                                                                        |
    +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`int<class_int>`                             | :ref:`display/window/handheld/orientation<class_ProjectSettings_property_display/window/handheld/orientation>`                                                                                             | ``0``                                                                                            |
    +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
@@ -536,6 +540,8 @@ Properties
    | :ref:`float<class_float>`                         | :ref:`gui/timers/text_edit_idle_detect_sec<class_ProjectSettings_property_gui/timers/text_edit_idle_detect_sec>`                                                                                           | ``3``                                                                                            |
    +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`float<class_float>`                         | :ref:`gui/timers/tooltip_delay_sec<class_ProjectSettings_property_gui/timers/tooltip_delay_sec>`                                                                                                           | ``0.5``                                                                                          |
+   +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
+   | :ref:`float<class_float>`                         | :ref:`gui/timers/tooltip_delay_sec.editor_hint<class_ProjectSettings_property_gui/timers/tooltip_delay_sec.editor_hint>`                                                                                   | ``0.5``                                                                                          |
    +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`Dictionary<class_Dictionary>`               | :ref:`input/ui_accept<class_ProjectSettings_property_input/ui_accept>`                                                                                                                                     |                                                                                                  |
    +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
@@ -734,6 +740,8 @@ Properties
    | :ref:`bool<class_bool>`                           | :ref:`internationalization/pseudolocalization/use_pseudolocalization<class_ProjectSettings_property_internationalization/pseudolocalization/use_pseudolocalization>`                                       | ``false``                                                                                        |
    +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`                           | :ref:`internationalization/rendering/force_right_to_left_layout_direction<class_ProjectSettings_property_internationalization/rendering/force_right_to_left_layout_direction>`                             | ``false``                                                                                        |
+   +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
+   | :ref:`bool<class_bool>`                           | :ref:`internationalization/rendering/root_node_auto_translate<class_ProjectSettings_property_internationalization/rendering/root_node_auto_translate>`                                                     | ``true``                                                                                         |
    +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`int<class_int>`                             | :ref:`internationalization/rendering/root_node_layout_direction<class_ProjectSettings_property_internationalization/rendering/root_node_layout_direction>`                                                 | ``0``                                                                                            |
    +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
@@ -1742,6 +1750,8 @@ Path to an image used as the boot splash. If left empty, the default Godot Engin
 
 \ **Note:** The only supported format is PNG. Using another image format will result in an error.
 
+\ **Note:** The image will also show when opening the project in the editor. If you want to display the default splash image in the editor, add an empty override for ``editor_hint`` feature.
+
 .. rst-class:: classref-item-separator
 
 ----
@@ -2604,6 +2614,18 @@ If ``true``, enables specific GDScript warnings (see ``debug/gdscript/warnings/*
 
 ----
 
+.. _class_ProjectSettings_property_debug/gdscript/warnings/enum_variable_without_default:
+
+.. rst-class:: classref-property
+
+:ref:`int<class_int>` **debug/gdscript/warnings/enum_variable_without_default** = ``1``
+
+When set to ``warn`` or ``error``, produces a warning or an error respectively when a variable has an enum type but no explicit default value, but only if the enum does not contain ``0`` as a valid value.
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _class_ProjectSettings_property_debug/gdscript/warnings/exclude_addons:
 
 .. rst-class:: classref-property
@@ -3195,6 +3217,18 @@ When set to ``true``, produces a warning when two floating-point numbers are com
 :ref:`bool<class_bool>` **debug/shader_language/warnings/formatting_error** = ``true``
 
 When set to ``true``, produces a warning upon encountering certain formatting errors. Currently this only checks for empty statements. More formatting errors may be added over time.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_ProjectSettings_property_debug/shader_language/warnings/magic_position_write:
+
+.. rst-class:: classref-property
+
+:ref:`bool<class_bool>` **debug/shader_language/warnings/magic_position_write** = ``true``
+
+When set to ``true``, produces a warning when the shader contains ``POSITION = vec4(vertex,`` as this was very common code written in Godot 4.2 and earlier that was paired with a QuadMesh to produce a full screen post processes pass. With the switch to reversed z in 4.3, this trick no longer works, as it implicitly relied on the ``VERTEX.z`` being 0.
 
 .. rst-class:: classref-item-separator
 
@@ -3814,13 +3848,13 @@ If ``true``, keeps the screen on (even in case of inactivity), so the screensave
 
 ----
 
-.. _class_ProjectSettings_property_display/window/energy_saving/keep_screen_on.editor:
+.. _class_ProjectSettings_property_display/window/energy_saving/keep_screen_on.editor_hint:
 
 .. rst-class:: classref-property
 
-:ref:`bool<class_bool>` **display/window/energy_saving/keep_screen_on.editor** = ``false``
+:ref:`bool<class_bool>` **display/window/energy_saving/keep_screen_on.editor_hint** = ``false``
 
-Editor-only override for :ref:`display/window/energy_saving/keep_screen_on<class_ProjectSettings_property_display/window/energy_saving/keep_screen_on>`. Does not affect exported projects in debug or release mode.
+Editor-only override for :ref:`display/window/energy_saving/keep_screen_on<class_ProjectSettings_property_display/window/energy_saving/keep_screen_on>`. Does not affect running project.
 
 .. rst-class:: classref-item-separator
 
@@ -4827,6 +4861,18 @@ Timer for detecting idle in :ref:`TextEdit<class_TextEdit>` (in seconds).
 :ref:`float<class_float>` **gui/timers/tooltip_delay_sec** = ``0.5``
 
 Default delay for tooltips (in seconds).
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_ProjectSettings_property_gui/timers/tooltip_delay_sec.editor_hint:
+
+.. rst-class:: classref-property
+
+:ref:`float<class_float>` **gui/timers/tooltip_delay_sec.editor_hint** = ``0.5``
+
+Delay for tooltips in the editor.
 
 .. rst-class:: classref-item-separator
 
@@ -6163,6 +6209,20 @@ If ``true``, enables pseudolocalization for the project. This can be used to spo
 :ref:`bool<class_bool>` **internationalization/rendering/force_right_to_left_layout_direction** = ``false``
 
 Force layout direction and text writing direction to RTL for all controls.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_ProjectSettings_property_internationalization/rendering/root_node_auto_translate:
+
+.. rst-class:: classref-property
+
+:ref:`bool<class_bool>` **internationalization/rendering/root_node_auto_translate** = ``true``
+
+If ``true``, root node will use :ref:`Node.AUTO_TRANSLATE_MODE_ALWAYS<class_Node_constant_AUTO_TRANSLATE_MODE_ALWAYS>`, otherwise :ref:`Node.AUTO_TRANSLATE_MODE_DISABLED<class_Node_constant_AUTO_TRANSLATE_MODE_DISABLED>` will be used.
+
+\ **Note:** This property is only read when the project starts. To change the auto translate mode at runtime, set :ref:`Node.auto_translate_mode<class_Node_property_auto_translate_mode>` of :ref:`SceneTree.root<class_SceneTree_property_root>` instead.
 
 .. rst-class:: classref-item-separator
 
