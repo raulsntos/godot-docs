@@ -12,6 +12,8 @@ VisualShaderNodeFrame
 
 **Inherits:** :ref:`VisualShaderNodeResizableBase<class_VisualShaderNodeResizableBase>` **<** :ref:`VisualShaderNode<class_VisualShaderNode>` **<** :ref:`Resource<class_Resource>` **<** :ref:`RefCounted<class_RefCounted>` **<** :ref:`Object<class_Object>`
 
+**Inherited By:** :ref:`VisualShaderNodeComment<class_VisualShaderNodeComment>`
+
 A frame other visual shader nodes can be attached to for better organization.
 
 .. rst-class:: classref-introduction-group
@@ -19,7 +21,7 @@ A frame other visual shader nodes can be attached to for better organization.
 Description
 -----------
 
-A rectangular frame that can be used to group visual shader nodes together to improve organization. 
+A rectangular frame that can be used to group visual shader nodes together to improve organization.
 
 Nodes attached to the frame will move with it when it is dragged and it can automatically resize to enclose all attached nodes.
 
