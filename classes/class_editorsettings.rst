@@ -667,6 +667,8 @@ Properties
    +---------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`                           | :ref:`text_editor/behavior/files/trim_trailing_whitespace_on_save<class_EditorSettings_property_text_editor/behavior/files/trim_trailing_whitespace_on_save>`                                                     |
    +---------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`bool<class_bool>`                           | :ref:`text_editor/behavior/general/empty_selection_clipboard<class_EditorSettings_property_text_editor/behavior/general/empty_selection_clipboard>`                                                               |
+   +---------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`                           | :ref:`text_editor/behavior/indent/auto_indent<class_EditorSettings_property_text_editor/behavior/indent/auto_indent>`                                                                                             |
    +---------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`                           | :ref:`text_editor/behavior/indent/indent_wrapped_lines<class_EditorSettings_property_text_editor/behavior/indent/indent_wrapped_lines>`                                                                           |
@@ -940,6 +942,8 @@ If ``true``, the Asset Library uses multiple threads for its HTTP requests. This
 :ref:`bool<class_bool>` **debugger/auto_switch_to_remote_scene_tree** :ref:`🔗<class_EditorSettings_property_debugger/auto_switch_to_remote_scene_tree>`
 
 If ``true``, automatically switches to the **Remote** scene tree when running the project from the editor. If ``false``, stays on the **Local** scene tree when running the project from the editor.
+
+\ **Warning:** Enabling this setting can cause stuttering when running a project with a large amount of nodes (typically a few thousands of nodes or more), even if the editor window isn't focused. This is due to the remote scene tree being updated every second regardless of whether the editor is focused.
 
 .. rst-class:: classref-item-separator
 
@@ -3681,7 +3685,7 @@ The default property name style to display in the Inspector dock. This style can
 
 If ``true``, add a margin around Array, Dictionary, and Resource Editors that are not already colored.
 
-\ **Note:** If :ref:`interface/inspector/nested_color_mode<class_EditorSettings_property_interface/inspector/nested_color_mode>` is set to **Containers & Resources** this parameter will have no effect since those editors will already be colored
+\ **Note:** If :ref:`interface/inspector/nested_color_mode<class_EditorSettings_property_interface/inspector/nested_color_mode>` is set to **Containers & Resources** this parameter will have no effect since those editors will already be colored.
 
 .. rst-class:: classref-item-separator
 
@@ -4794,6 +4798,18 @@ If ``true``, trims all empty newlines after the final newline when saving a scri
 :ref:`bool<class_bool>` **text_editor/behavior/files/trim_trailing_whitespace_on_save** :ref:`🔗<class_EditorSettings_property_text_editor/behavior/files/trim_trailing_whitespace_on_save>`
 
 If ``true``, trims trailing whitespace when saving a script. Trailing whitespace refers to tab and space characters placed at the end of lines. Since these serve no practical purpose, they can and should be removed to make version control diffs less noisy.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_EditorSettings_property_text_editor/behavior/general/empty_selection_clipboard:
+
+.. rst-class:: classref-property
+
+:ref:`bool<class_bool>` **text_editor/behavior/general/empty_selection_clipboard** :ref:`🔗<class_EditorSettings_property_text_editor/behavior/general/empty_selection_clipboard>`
+
+If ``true``, copying or cutting without a selection is performed on all lines with a caret. Otherwise, copy and cut require a selection.
 
 .. rst-class:: classref-item-separator
 

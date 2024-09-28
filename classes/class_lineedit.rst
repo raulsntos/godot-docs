@@ -26,15 +26,15 @@ Description
 
 - When the **LineEdit** control is focused using the keyboard arrow keys, it will only gain focus and not enter edit mode.
 
-- To enter edit mode, click on the control with the mouse or press the "ui_text_submit" action (default: :kbd:`Enter` or :kbd:`Kp Enter`).
+- To enter edit mode, click on the control with the mouse or press the ``ui_text_submit`` action (by default :kbd:`Enter` or :kbd:`Kp Enter`).
 
-- To exit edit mode, press "ui_text_submit" or "ui_cancel" (default: :kbd:`Escape`) actions.
+- To exit edit mode, press ``ui_text_submit`` or ``ui_cancel`` (by default :kbd:`Escape`) actions.
 
 - Check :ref:`is_editing<class_LineEdit_method_is_editing>` and :ref:`editing_toggled<class_LineEdit_signal_editing_toggled>` for more information.
 
 \ **Important:**\ 
 
-- Focusing the **LineEdit** with "ui_focus_next" (default: :kbd:`Tab`) or "ui_focus_prev" (default: :kbd:`Shift + Tab`) or :ref:`Control.grab_focus<class_Control_method_grab_focus>` still enters edit mode (for compatibility).
+- Focusing the **LineEdit** with ``ui_focus_next`` (by default :kbd:`Tab`) or ``ui_focus_prev`` (by default :kbd:`Shift + Tab`) or :ref:`Control.grab_focus<class_Control_method_grab_focus>` still enters edit mode (for compatibility).
 
 \ **LineEdit** features many built-in shortcuts that are always available (:kbd:`Ctrl` here maps to :kbd:`Cmd` on macOS):
 
@@ -187,7 +187,11 @@ Methods
    +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`           | :ref:`has_ime_text<class_LineEdit_method_has_ime_text>`\ (\ ) |const|                                                               |
    +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`bool<class_bool>`           | :ref:`has_redo<class_LineEdit_method_has_redo>`\ (\ ) |const|                                                                       |
+   +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`           | :ref:`has_selection<class_LineEdit_method_has_selection>`\ (\ ) |const|                                                             |
+   +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`bool<class_bool>`           | :ref:`has_undo<class_LineEdit_method_has_undo>`\ (\ ) |const|                                                                       |
    +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                            | :ref:`insert_text_at_caret<class_LineEdit_method_insert_text_at_caret>`\ (\ text\: :ref:`String<class_String>`\ )                   |
    +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------+
@@ -299,7 +303,7 @@ Emitted when the text changes.
 
 **text_submitted**\ (\ new_text\: :ref:`String<class_String>`\ ) :ref:`🔗<class_LineEdit_signal_text_submitted>`
 
-Emitted when the user presses :ref:`@GlobalScope.KEY_ENTER<class_@GlobalScope_constant_KEY_ENTER>` on the **LineEdit**.
+Emitted when the user presses the ``ui_text_submit`` action (by default: :kbd:`Enter` or :kbd:`Kp Enter`) while the **LineEdit** has focus.
 
 .. rst-class:: classref-section-separator
 
@@ -1392,6 +1396,18 @@ Returns ``true`` if the user has text in the `Input Method Editor <https://en.wi
 
 ----
 
+.. _class_LineEdit_method_has_redo:
+
+.. rst-class:: classref-method
+
+:ref:`bool<class_bool>` **has_redo**\ (\ ) |const| :ref:`🔗<class_LineEdit_method_has_redo>`
+
+Returns ``true`` if a "redo" action is available.
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _class_LineEdit_method_has_selection:
 
 .. rst-class:: classref-method
@@ -1399,6 +1415,18 @@ Returns ``true`` if the user has text in the `Input Method Editor <https://en.wi
 :ref:`bool<class_bool>` **has_selection**\ (\ ) |const| :ref:`🔗<class_LineEdit_method_has_selection>`
 
 Returns ``true`` if the user has selected text.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_LineEdit_method_has_undo:
+
+.. rst-class:: classref-method
+
+:ref:`bool<class_bool>` **has_undo**\ (\ ) |const| :ref:`🔗<class_LineEdit_method_has_undo>`
+
+Returns ``true`` if an "undo" action is available.
 
 .. rst-class:: classref-item-separator
 
