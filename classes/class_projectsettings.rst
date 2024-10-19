@@ -1541,6 +1541,8 @@ Properties
    +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`                           | :ref:`rendering/rendering_device/fallback_to_d3d12<class_ProjectSettings_property_rendering/rendering_device/fallback_to_d3d12>`                                                                           | ``true``                                                                                         |
    +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
+   | :ref:`bool<class_bool>`                           | :ref:`rendering/rendering_device/fallback_to_opengl3<class_ProjectSettings_property_rendering/rendering_device/fallback_to_opengl3>`                                                                       | ``true``                                                                                         |
+   +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`                           | :ref:`rendering/rendering_device/fallback_to_vulkan<class_ProjectSettings_property_rendering/rendering_device/fallback_to_vulkan>`                                                                         | ``true``                                                                                         |
    +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`                           | :ref:`rendering/rendering_device/pipeline_cache/enable<class_ProjectSettings_property_rendering/rendering_device/pipeline_cache/enable>`                                                                   | ``true``                                                                                         |
@@ -1581,8 +1583,6 @@ Properties
    +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`                           | :ref:`rendering/shading/overrides/force_vertex_shading<class_ProjectSettings_property_rendering/shading/overrides/force_vertex_shading>`                                                                   | ``false``                                                                                        |
    +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
-   | :ref:`bool<class_bool>`                           | :ref:`rendering/shading/overrides/force_vertex_shading.mobile<class_ProjectSettings_property_rendering/shading/overrides/force_vertex_shading.mobile>`                                                     | ``true``                                                                                         |
-   +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`int<class_int>`                             | :ref:`rendering/textures/canvas_textures/default_texture_filter<class_ProjectSettings_property_rendering/textures/canvas_textures/default_texture_filter>`                                                 | ``1``                                                                                            |
    +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`int<class_int>`                             | :ref:`rendering/textures/canvas_textures/default_texture_repeat<class_ProjectSettings_property_rendering/textures/canvas_textures/default_texture_repeat>`                                                 | ``0``                                                                                            |
@@ -1598,6 +1598,8 @@ Properties
    | :ref:`int<class_int>`                             | :ref:`rendering/textures/light_projectors/filter<class_ProjectSettings_property_rendering/textures/light_projectors/filter>`                                                                               | ``3``                                                                                            |
    +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`                           | :ref:`rendering/textures/lossless_compression/force_png<class_ProjectSettings_property_rendering/textures/lossless_compression/force_png>`                                                                 | ``false``                                                                                        |
+   +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
+   | :ref:`bool<class_bool>`                           | :ref:`rendering/textures/vram_compression/cache_gpu_compressor<class_ProjectSettings_property_rendering/textures/vram_compression/cache_gpu_compressor>`                                                   | ``true``                                                                                         |
    +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`                           | :ref:`rendering/textures/vram_compression/compress_with_gpu<class_ProjectSettings_property_rendering/textures/vram_compression/compress_with_gpu>`                                                         | ``true``                                                                                         |
    +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
@@ -2028,7 +2030,7 @@ It may take several seconds at a stable frame rate before the smoothing is initi
 
 If ``true``, disables printing to standard error. If ``true``, this also hides error and warning messages printed by :ref:`@GlobalScope.push_error<class_@GlobalScope_method_push_error>` and :ref:`@GlobalScope.push_warning<class_@GlobalScope_method_push_warning>`. See also :ref:`application/run/disable_stdout<class_ProjectSettings_property_application/run/disable_stdout>`.
 
-Changes to this setting will only be applied upon restarting the application.
+Changes to this setting will only be applied upon restarting the application. To control this at runtime, use :ref:`Engine.print_error_messages<class_Engine_property_print_error_messages>`.
 
 .. rst-class:: classref-item-separator
 
@@ -2042,7 +2044,7 @@ Changes to this setting will only be applied upon restarting the application.
 
 If ``true``, disables printing to standard output. This is equivalent to starting the editor or project with the ``--quiet`` :doc:`command line argument <../tutorials/editor/command_line_tutorial>`. See also :ref:`application/run/disable_stderr<class_ProjectSettings_property_application/run/disable_stderr>`.
 
-Changes to this setting will only be applied upon restarting the application.
+Changes to this setting will only be applied upon restarting the application. To control this at runtime, use :ref:`Engine.print_to_stdout<class_Engine_property_print_to_stdout>`.
 
 .. rst-class:: classref-item-separator
 
@@ -5986,7 +5988,7 @@ macOS specific override for the shortcut to select the word currently under the 
 
 :ref:`Dictionary<class_Dictionary>` **input/ui_text_skip_selection_for_next_occurrence** :ref:`🔗<class_ProjectSettings_property_input/ui_text_skip_selection_for_next_occurrence>`
 
-If no selection is currently active with the last caret in text fields, searches for the next occurrence of the the word currently under the caret and moves the caret to the next occurrence. The action can be performed sequentially for other occurrences of the word under the last caret.
+If no selection is currently active with the last caret in text fields, searches for the next occurrence of the word currently under the caret and moves the caret to the next occurrence. The action can be performed sequentially for other occurrences of the word under the last caret.
 
 If a selection is currently active with the last caret in text fields, searches for the next occurrence of the selection, adds a caret, selects the next occurrence then deselects the previous selection and its associated caret. The action can be performed sequentially for other occurrences of the selection of the last caret.
 
@@ -9252,6 +9254,8 @@ Sets which physics engine to use for 2D physics.
 
 "DEFAULT" and "GodotPhysics2D" are the same, as there is currently no alternative 2D physics server implemented.
 
+"Dummy" is a 2D physics server that does nothing and returns only dummy values, effectively disabling all 2D physics functionality.
+
 .. rst-class:: classref-item-separator
 
 ----
@@ -9487,6 +9491,8 @@ During each physics tick, Godot will multiply the linear velocity of RigidBodies
 Sets which physics engine to use for 3D physics.
 
 "DEFAULT" and "GodotPhysics3D" are the same, as there is currently no alternative 3D physics server implemented.
+
+"Dummy" is a 3D physics server that does nothing and returns only dummy values, effectively disabling all 3D physics functionality.
 
 .. rst-class:: classref-item-separator
 
@@ -9776,9 +9782,11 @@ If ``true``, vertices of :ref:`CanvasItem<class_CanvasItem>` nodes will snap to 
 
 :ref:`int<class_int>` **rendering/anti_aliasing/quality/msaa_2d** = ``0`` :ref:`🔗<class_ProjectSettings_property_rendering/anti_aliasing/quality/msaa_2d>`
 
-Sets the number of MSAA samples to use for 2D/Canvas rendering (as a power of two). MSAA is used to reduce aliasing around the edges of polygons. A higher MSAA value results in smoother edges but can be significantly slower on some hardware, especially integrated graphics due to their limited memory bandwidth. This has no effect on shader-induced aliasing or texture aliasing.
+Sets the number of multisample antialiasing (MSAA) samples to use for 2D/Canvas rendering (as a power of two). MSAA is used to reduce aliasing around the edges of polygons. A higher MSAA value results in smoother edges but can be significantly slower on some hardware, especially integrated graphics due to their limited memory bandwidth. This has no effect on shader-induced aliasing or texture aliasing.
 
 \ **Note:** MSAA is only supported in the Forward+ and Mobile rendering methods, not Compatibility.
+
+\ **Note:** This property is only read when the project starts. To set the number of 2D MSAA samples at runtime, set :ref:`Viewport.msaa_2d<class_Viewport_property_msaa_2d>` or use :ref:`RenderingServer.viewport_set_msaa_2d<class_RenderingServer_method_viewport_set_msaa_2d>`.
 
 .. rst-class:: classref-item-separator
 
@@ -9790,7 +9798,9 @@ Sets the number of MSAA samples to use for 2D/Canvas rendering (as a power of tw
 
 :ref:`int<class_int>` **rendering/anti_aliasing/quality/msaa_3d** = ``0`` :ref:`🔗<class_ProjectSettings_property_rendering/anti_aliasing/quality/msaa_3d>`
 
-Sets the number of MSAA samples to use for 3D rendering (as a power of two). MSAA is used to reduce aliasing around the edges of polygons. A higher MSAA value results in smoother edges but can be significantly slower on some hardware, especially integrated graphics due to their limited memory bandwidth. See also :ref:`rendering/scaling_3d/mode<class_ProjectSettings_property_rendering/scaling_3d/mode>` for supersampling, which provides higher quality but is much more expensive. This has no effect on shader-induced aliasing or texture aliasing.
+Sets the number of multisample antialiasing (MSAA) samples to use for 3D rendering (as a power of two). MSAA is used to reduce aliasing around the edges of polygons. A higher MSAA value results in smoother edges but can be significantly slower on some hardware, especially integrated graphics due to their limited memory bandwidth. See also :ref:`rendering/scaling_3d/mode<class_ProjectSettings_property_rendering/scaling_3d/mode>` for supersampling, which provides higher quality but is much more expensive. This has no effect on shader-induced aliasing or texture aliasing.
+
+\ **Note:** This property is only read when the project starts. To set the number of 3D MSAA samples at runtime, set :ref:`Viewport.msaa_3d<class_Viewport_property_msaa_3d>` or use :ref:`RenderingServer.viewport_set_msaa_3d<class_RenderingServer_method_viewport_set_msaa_3d>`.
 
 .. rst-class:: classref-item-separator
 
@@ -9808,6 +9818,8 @@ Another way to combat specular aliasing is to enable :ref:`rendering/anti_aliasi
 
 \ **Note:** Screen-space antialiasing is only supported in the Forward+ and Mobile rendering methods, not Compatibility.
 
+\ **Note:** This property is only read when the project starts. To set the screen-space antialiasing mode at runtime, set :ref:`Viewport.screen_space_aa<class_Viewport_property_screen_space_aa>` on the root :ref:`Viewport<class_Viewport>` instead, or use :ref:`RenderingServer.viewport_set_screen_space_aa<class_RenderingServer_method_viewport_set_screen_space_aa>`.
+
 .. rst-class:: classref-item-separator
 
 ----
@@ -9822,7 +9834,7 @@ If ``true``, uses a fast post-processing filter to make banding significantly le
 
 In some cases, debanding may introduce a slightly noticeable dithering pattern. It's recommended to enable debanding only when actually needed since the dithering pattern will make lossless-compressed screenshots larger.
 
-\ **Note:** This property is only read when the project starts. To set debanding at run-time, set :ref:`Viewport.use_debanding<class_Viewport_property_use_debanding>` on the root :ref:`Viewport<class_Viewport>` instead.
+\ **Note:** This property is only read when the project starts. To set debanding at runtime, set :ref:`Viewport.use_debanding<class_Viewport_property_use_debanding>` on the root :ref:`Viewport<class_Viewport>` instead, or use :ref:`RenderingServer.viewport_set_use_debanding<class_RenderingServer_method_viewport_set_use_debanding>`.
 
 .. rst-class:: classref-item-separator
 
@@ -9834,11 +9846,13 @@ In some cases, debanding may introduce a slightly noticeable dithering pattern. 
 
 :ref:`bool<class_bool>` **rendering/anti_aliasing/quality/use_taa** = ``false`` :ref:`🔗<class_ProjectSettings_property_rendering/anti_aliasing/quality/use_taa>`
 
-Enables Temporal Anti-Aliasing for the default screen :ref:`Viewport<class_Viewport>`. TAA works by jittering the camera and accumulating the images of the last rendered frames, motion vector rendering is used to account for camera and object motion. Enabling TAA can make the image blurrier, which is partially counteracted by automatically using a negative mipmap LOD bias (see :ref:`rendering/textures/default_filters/texture_mipmap_bias<class_ProjectSettings_property_rendering/textures/default_filters/texture_mipmap_bias>`).
+Enables temporal antialiasing for the default screen :ref:`Viewport<class_Viewport>`. TAA works by jittering the camera and accumulating the images of the last rendered frames, motion vector rendering is used to account for camera and object motion. Enabling TAA can make the image blurrier, which is partially counteracted by automatically using a negative mipmap LOD bias (see :ref:`rendering/textures/default_filters/texture_mipmap_bias<class_ProjectSettings_property_rendering/textures/default_filters/texture_mipmap_bias>`).
 
 \ **Note:** The implementation is not complete yet. Some visual instances such as particles and skinned meshes may show ghosting artifacts in motion.
 
 \ **Note:** TAA is only supported in the Forward+ rendering method, not Mobile or Compatibility.
+
+\ **Note:** This property is only read when the project starts. To set TAA at runtime, set :ref:`Viewport.use_taa<class_Viewport_property_use_taa>` on the root :ref:`Viewport<class_Viewport>` instead, or use :ref:`RenderingServer.viewport_set_use_taa<class_RenderingServer_method_viewport_set_use_taa>`.
 
 .. rst-class:: classref-item-separator
 
@@ -11352,6 +11366,20 @@ If ``true``, the forward renderer will fall back to Direct3D 12 if Vulkan is not
 
 ----
 
+.. _class_ProjectSettings_property_rendering/rendering_device/fallback_to_opengl3:
+
+.. rst-class:: classref-property
+
+:ref:`bool<class_bool>` **rendering/rendering_device/fallback_to_opengl3** = ``true`` :ref:`🔗<class_ProjectSettings_property_rendering/rendering_device/fallback_to_opengl3>`
+
+If ``true``, the forward renderer will fall back to OpenGL 3 if both Direct3D 12, Metal and Vulkan are not supported.
+
+\ **Note:** This setting is implemented only on Windows, Android, macOS, iOS, and Linux/X11.
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _class_ProjectSettings_property_rendering/rendering_device/fallback_to_vulkan:
 
 .. rst-class:: classref-property
@@ -11626,22 +11654,6 @@ Lower-end override for :ref:`rendering/shading/overrides/force_lambert_over_burl
 
 If ``true``, forces vertex shading for all rendering. This can increase performance a lot, but also reduces quality immensely. Can be used to optimize performance on low-end mobile devices.
 
-\ **Note:** This setting currently has no effect, as vertex shading is not implemented yet.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_ProjectSettings_property_rendering/shading/overrides/force_vertex_shading.mobile:
-
-.. rst-class:: classref-property
-
-:ref:`bool<class_bool>` **rendering/shading/overrides/force_vertex_shading.mobile** = ``true`` :ref:`🔗<class_ProjectSettings_property_rendering/shading/overrides/force_vertex_shading.mobile>`
-
-Lower-end override for :ref:`rendering/shading/overrides/force_vertex_shading<class_ProjectSettings_property_rendering/shading/overrides/force_vertex_shading>` on mobile devices, due to performance concerns or driver support.
-
-\ **Note:** This setting currently has no effect, as vertex shading is not implemented yet.
-
 .. rst-class:: classref-item-separator
 
 ----
@@ -11756,17 +11768,29 @@ If ``true``, the texture importer will import lossless textures using the PNG fo
 
 ----
 
+.. _class_ProjectSettings_property_rendering/textures/vram_compression/cache_gpu_compressor:
+
+.. rst-class:: classref-property
+
+:ref:`bool<class_bool>` **rendering/textures/vram_compression/cache_gpu_compressor** = ``true`` :ref:`🔗<class_ProjectSettings_property_rendering/textures/vram_compression/cache_gpu_compressor>`
+
+If ``true``, the GPU texture compressor will cache the local RenderingDevice and its resources (shaders and pipelines), allowing for faster subsequent imports at a memory cost.
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _class_ProjectSettings_property_rendering/textures/vram_compression/compress_with_gpu:
 
 .. rst-class:: classref-property
 
 :ref:`bool<class_bool>` **rendering/textures/vram_compression/compress_with_gpu** = ``true`` :ref:`🔗<class_ProjectSettings_property_rendering/textures/vram_compression/compress_with_gpu>`
 
-If ``true``, the texture importer will utilize the GPU for compressing textures, which makes large textures import significantly faster.
+If ``true``, the texture importer will utilize the GPU for compressing textures, improving the import time of large images.
 
-\ **Note:** This setting requires either Vulkan or D3D12 available as a rendering backend.
+\ **Note:** This only functions on a device which supports either Vulkan, D3D12, or Metal available as a rendering backend.
 
-\ **Note:** Currently this only affects BC6H compression, which is used on Desktop and Console for HDR images.
+\ **Note:** Currently this only affects certain compressed formats (BC1, BC4, and BC6), all of which are exclusive to desktop platforms and consoles.
 
 .. rst-class:: classref-item-separator
 
