@@ -21,7 +21,9 @@ This is the built-in string Variant type (and the one used by GDScript). Strings
 
 Some string methods have corresponding variations. Variations suffixed with ``n`` (:ref:`countn<class_String_method_countn>`, :ref:`findn<class_String_method_findn>`, :ref:`replacen<class_String_method_replacen>`, etc.) are **case-insensitive** (they make no distinction between uppercase and lowercase letters). Method variations prefixed with ``r`` (:ref:`rfind<class_String_method_rfind>`, :ref:`rsplit<class_String_method_rsplit>`, etc.) are reversed, and start from the end of the string, instead of the beginning.
 
-\ **Note:** In a boolean context, a string will evaluate to ``false`` if it is empty (``""``). Otherwise, a string will always evaluate to ``true``. The ``not`` operator cannot be used. Instead, :ref:`is_empty<class_String_method_is_empty>` should be used to check for empty strings.
+To convert any Variant to or from a string, see :ref:`@GlobalScope.str<class_@GlobalScope_method_str>`, :ref:`@GlobalScope.str_to_var<class_@GlobalScope_method_str_to_var>`, and :ref:`@GlobalScope.var_to_str<class_@GlobalScope_method_var_to_str>`.
+
+\ **Note:** In a boolean context, a string will evaluate to ``false`` if it is empty (``""``). Otherwise, a string will always evaluate to ``true``.
 
 .. note::
 
@@ -702,7 +704,7 @@ Returns the index of the **first** **case-insensitive** occurrence of ``what`` i
 
 Formats the string by replacing all occurrences of ``placeholder`` with the elements of ``values``.
 
-\ ``values`` can be a :ref:`Dictionary<class_Dictionary>` or an :ref:`Array<class_Array>`. Any underscores in ``placeholder`` will be replaced with the corresponding keys in advance. Array elements use their index as keys.
+\ ``values`` can be a :ref:`Dictionary<class_Dictionary>`, an :ref:`Array<class_Array>` or an :ref:`Object<class_Object>`. Any underscores in ``placeholder`` will be replaced with the corresponding keys in advance. Array elements use their index as keys.
 
 ::
 
@@ -720,6 +722,14 @@ Some additional handling is performed when ``values`` is an :ref:`Array<class_Ar
     # Prints "User 42 is Godot."
     print("User {} is {}.".format([42, "Godot"], "{}"))
     print("User {id} is {name}.".format([["id", 42], ["name", "Godot"]]))
+
+When passing an :ref:`Object<class_Object>`, the property names from :ref:`Object.get_property_list<class_Object_method_get_property_list>` are used as keys.
+
+::
+
+    # Prints: Visible true, position (0, 0).
+    var node = Node2D.new()
+    print("Visible {visible}, position {position}".format(node))
 
 See also the :doc:`GDScript format string <../tutorials/scripting/gdscript/gdscript_format_string>` tutorial.
 
