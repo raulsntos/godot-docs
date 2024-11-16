@@ -21,7 +21,7 @@ A list of global scope enumerated constants and built-in functions. This is all 
 
 Singletons are also documented here, since they can be accessed from anywhere.
 
-For the entries related to GDScript which can be accessed in any script see :ref:`@GDScript<class_@GDScript>`.
+For the entries that can only be accessed from scripts written in GDScript, see :ref:`@GDScript<class_@GDScript>`.
 
 .. note::
 
@@ -3852,11 +3852,26 @@ Hints that a quaternion property should disable the temporary euler editor.
 
 Hints that a string property is a password, and every character is replaced with the secret character.
 
+.. _class_@GlobalScope_constant_PROPERTY_HINT_TOOL_BUTTON:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`PropertyHint<enum_@GlobalScope_PropertyHint>` **PROPERTY_HINT_TOOL_BUTTON** = ``39``
+
+Hints that a :ref:`Callable<class_Callable>` property should be displayed as a clickable button. When the button is pressed, the callable is called. The hint string specifies the button text and optionally an icon from the ``"EditorIcons"`` theme type.
+
+.. code:: text
+
+    "Click me!" - A button with the text "Click me!" and the default "Callable" icon.
+    "Click me!,ColorRect" - A button with the text "Click me!" and the "ColorRect" icon.
+
+\ **Note:** A :ref:`Callable<class_Callable>` cannot be properly serialized and stored in a file, so it is recommended to use :ref:`PROPERTY_USAGE_EDITOR<class_@GlobalScope_constant_PROPERTY_USAGE_EDITOR>` instead of :ref:`PROPERTY_USAGE_DEFAULT<class_@GlobalScope_constant_PROPERTY_USAGE_DEFAULT>`.
+
 .. _class_@GlobalScope_constant_PROPERTY_HINT_MAX:
 
 .. rst-class:: classref-enumeration-constant
 
-:ref:`PropertyHint<enum_@GlobalScope_PropertyHint>` **PROPERTY_HINT_MAX** = ``39``
+:ref:`PropertyHint<enum_@GlobalScope_PropertyHint>` **PROPERTY_HINT_MAX** = ``40``
 
 Represents the size of the :ref:`PropertyHint<enum_@GlobalScope_PropertyHint>` enum.
 
@@ -3972,7 +3987,7 @@ Editing the property prompts the user for restarting the editor.
 
 :ref:`PropertyUsageFlags<enum_@GlobalScope_PropertyUsageFlags>` **PROPERTY_USAGE_SCRIPT_VARIABLE** = ``4096``
 
-The property is a script variable which should be serialized and saved in the scene file.
+The property is a script variable. :ref:`PROPERTY_USAGE_SCRIPT_VARIABLE<class_@GlobalScope_constant_PROPERTY_USAGE_SCRIPT_VARIABLE>` can be used to distinguish between exported script variables from built-in variables (which don't have this usage flag). By default, :ref:`PROPERTY_USAGE_SCRIPT_VARIABLE<class_@GlobalScope_constant_PROPERTY_USAGE_SCRIPT_VARIABLE>` is **not** applied to variables that are created by overriding :ref:`Object._get_property_list<class_Object_private_method__get_property_list>` in a script.
 
 .. _class_@GlobalScope_constant_PROPERTY_USAGE_STORE_IF_NULL:
 
@@ -4006,7 +4021,7 @@ If this property is modified, all inspector fields will be refreshed.
 
 :ref:`PropertyUsageFlags<enum_@GlobalScope_PropertyUsageFlags>` **PROPERTY_USAGE_CLASS_IS_ENUM** = ``65536``
 
-The property is an enum, i.e. it only takes named integer constants from its associated enumeration.
+The property is a variable of enum type, i.e. it only takes named integer constants from its associated enumeration.
 
 .. _class_@GlobalScope_constant_PROPERTY_USAGE_NIL_IS_VARIANT:
 
@@ -6434,7 +6449,7 @@ Converts one or more arguments of any type to string in the best way possible an
 
 
 
-\ **Note:** Consider using :ref:`push_error<class_@GlobalScope_method_push_error>` and :ref:`push_warning<class_@GlobalScope_method_push_warning>` to print error and warning messages instead of :ref:`print<class_@GlobalScope_method_print>` or :ref:`print_rich<class_@GlobalScope_method_print_rich>`. This distinguishes them from print messages used for debugging purposes, while also displaying a stack trace when an error or warning is printed.
+\ **Note:** Consider using :ref:`push_error<class_@GlobalScope_method_push_error>` and :ref:`push_warning<class_@GlobalScope_method_push_warning>` to print error and warning messages instead of :ref:`print<class_@GlobalScope_method_print>` or :ref:`print_rich<class_@GlobalScope_method_print_rich>`. This distinguishes them from print messages used for debugging purposes, while also displaying a stack trace when an error or warning is printed. See also :ref:`Engine.print_to_stdout<class_Engine_property_print_to_stdout>` and :ref:`ProjectSettings.application/run/disable_stdout<class_ProjectSettings_property_application/run/disable_stdout>`.
 
 .. rst-class:: classref-item-separator
 
@@ -6683,8 +6698,8 @@ Given a ``seed``, returns a :ref:`PackedInt64Array<class_PackedInt64Array>` of s
 
     var a = rand_from_seed(4)
     
-    print(a[0])	# Prints 2879024997
-    print(a[1])	# Prints 4
+    print(a[0]) # Prints 2879024997
+    print(a[1]) # Prints 4
 
 .. rst-class:: classref-item-separator
 
@@ -7023,7 +7038,7 @@ Returns ``-1.0`` if ``x`` is negative, ``1.0`` if ``x`` is positive, and ``0.0``
 
 :ref:`int<class_int>` **signi**\ (\ x\: :ref:`int<class_int>`\ ) :ref:`🔗<class_@GlobalScope_method_signi>`
 
-Returns ``-1`` if ``x`` is negative, ``1`` if ``x`` is positive, and ``0`` if if ``x`` is zero.
+Returns ``-1`` if ``x`` is negative, ``1`` if ``x`` is positive, and ``0`` if ``x`` is zero.
 
 ::
 
