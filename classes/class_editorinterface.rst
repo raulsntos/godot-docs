@@ -88,6 +88,8 @@ Methods
    +----------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Theme<class_Theme>`                                      | :ref:`get_editor_theme<class_EditorInterface_method_get_editor_theme>`\ (\ ) |const|                                                                                                                                                                                                                               |
    +----------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`EditorToaster<class_EditorToaster>`                      | :ref:`get_editor_toaster<class_EditorInterface_method_get_editor_toaster>`\ (\ ) |const|                                                                                                                                                                                                                           |
+   +----------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`EditorUndoRedoManager<class_EditorUndoRedoManager>`      | :ref:`get_editor_undo_redo<class_EditorInterface_method_get_editor_undo_redo>`\ (\ ) |const|                                                                                                                                                                                                                       |
    +----------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`SubViewport<class_SubViewport>`                          | :ref:`get_editor_viewport_2d<class_EditorInterface_method_get_editor_viewport_2d>`\ (\ ) |const|                                                                                                                                                                                                                   |
@@ -140,9 +142,13 @@ Methods
    +----------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                                                         | :ref:`popup_dialog_centered_ratio<class_EditorInterface_method_popup_dialog_centered_ratio>`\ (\ dialog\: :ref:`Window<class_Window>`, ratio\: :ref:`float<class_float>` = 0.8\ )                                                                                                                                  |
    +----------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | |void|                                                         | :ref:`popup_method_selector<class_EditorInterface_method_popup_method_selector>`\ (\ object\: :ref:`Object<class_Object>`, callback\: :ref:`Callable<class_Callable>`, current_value\: :ref:`String<class_String>` = ""\ )                                                                                         |
+   +----------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                                                         | :ref:`popup_node_selector<class_EditorInterface_method_popup_node_selector>`\ (\ callback\: :ref:`Callable<class_Callable>`, valid_types\: :ref:`Array<class_Array>`\[:ref:`StringName<class_StringName>`\] = [], current_value\: :ref:`Node<class_Node>` = null\ )                                                |
    +----------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                                                         | :ref:`popup_property_selector<class_EditorInterface_method_popup_property_selector>`\ (\ object\: :ref:`Object<class_Object>`, callback\: :ref:`Callable<class_Callable>`, type_filter\: :ref:`PackedInt32Array<class_PackedInt32Array>` = PackedInt32Array(), current_value\: :ref:`String<class_String>` = ""\ ) |
+   +----------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | |void|                                                         | :ref:`popup_quick_open<class_EditorInterface_method_popup_quick_open>`\ (\ callback\: :ref:`Callable<class_Callable>`, base_types\: :ref:`Array<class_Array>`\[:ref:`StringName<class_StringName>`\] = []\ )                                                                                                       |
    +----------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                                                         | :ref:`reload_scene_from_path<class_EditorInterface_method_reload_scene_from_path>`\ (\ scene_filepath\: :ref:`String<class_String>`\ )                                                                                                                                                                             |
    +----------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -392,6 +398,18 @@ Returns the editor's :ref:`EditorSettings<class_EditorSettings>` instance.
 Returns the editor's :ref:`Theme<class_Theme>`.
 
 \ **Note:** When creating custom editor UI, prefer accessing theme items directly from your GUI nodes using the ``get_theme_*`` methods.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_EditorInterface_method_get_editor_toaster:
+
+.. rst-class:: classref-method
+
+:ref:`EditorToaster<class_EditorToaster>` **get_editor_toaster**\ (\ ) |const| :ref:`🔗<class_EditorInterface_method_get_editor_toaster>`
+
+Returns the editor's :ref:`EditorToaster<class_EditorToaster>`.
 
 .. rst-class:: classref-item-separator
 
@@ -729,6 +747,18 @@ See also :ref:`Window.set_unparent_when_invisible<class_Window_method_set_unpare
 
 ----
 
+.. _class_EditorInterface_method_popup_method_selector:
+
+.. rst-class:: classref-method
+
+|void| **popup_method_selector**\ (\ object\: :ref:`Object<class_Object>`, callback\: :ref:`Callable<class_Callable>`, current_value\: :ref:`String<class_String>` = ""\ ) :ref:`🔗<class_EditorInterface_method_popup_method_selector>`
+
+Pops up an editor dialog for selecting a method from ``object``. The ``callback`` must take a single argument of type :ref:`String<class_String>` which will contain the name of the selected method or be empty if the dialog is canceled. If ``current_value`` is provided, the method will be selected automatically in the method list, if it exists.
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _class_EditorInterface_method_popup_node_selector:
 
 .. rst-class:: classref-method
@@ -774,6 +804,18 @@ Pops up an editor dialog for selecting properties from ``object``. The ``callbac
             print("property selection canceled")
         else:
             print("selected ", property_path)
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_EditorInterface_method_popup_quick_open:
+
+.. rst-class:: classref-method
+
+|void| **popup_quick_open**\ (\ callback\: :ref:`Callable<class_Callable>`, base_types\: :ref:`Array<class_Array>`\[:ref:`StringName<class_StringName>`\] = []\ ) :ref:`🔗<class_EditorInterface_method_popup_quick_open>`
+
+Pops up an editor dialog for quick selecting a resource file. The ``callback`` must take a single argument of type :ref:`String<class_String>` which will contain the path of the selected resource or be empty if the dialog is canceled. If ``base_types`` is provided, the dialog will only show resources that match these types. Only types deriving from :ref:`Resource<class_Resource>` are supported.
 
 .. rst-class:: classref-item-separator
 
